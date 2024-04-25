@@ -31,15 +31,15 @@ jobs:
           source: "./build/libs/*.jar"
           target: "~"
           strip_components: 2
-#
-#      - name: SSH Commands
-#        uses: appleboy/ssh-action@v0.1.6
-#        with:
-#          host: ${{ secrets.SSH_HOST }}
-#          username: ec2-user
-#          key: ${{ secrets.SSH_KEY }}
-#          port: 22
-#          script_stop: true
-#          script: |
-#            kill -9 $(ps -ef | grep java | head -n 1 | awk '{print $2}')
-#            nohup java -jar *.jar 1> /dev/null 2>&1 &
+
+      - name: SSH Commands
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ec2-user
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+          script_stop: true
+          script: |
+            kill -9 $(ps -ef | grep java | head -n 1 | awk '{print $2}')
+            nohup java -jar *.jar 1> /dev/null 2>&1 &
